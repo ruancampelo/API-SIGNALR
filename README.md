@@ -20,7 +20,7 @@ Este projeto é uma Web API que utiliza o SignalR para fornecer funcionalidades 
      "DefaultConnection": "Data Source=./Infraestrutura/Data/Chinook.db"
    }
 
-## Imagens
+## Exemplos de uso
 #### FRONT-END (React)
 ![IMG](https://i.imgur.com/chRfOK1.gif)
 #### ENDPOINTS + SignalR (Cliente .NET, Cliente Web)

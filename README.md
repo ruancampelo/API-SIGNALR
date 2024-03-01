@@ -13,12 +13,10 @@ Este projeto é uma Web API que utiliza o SignalR para fornecer funcionalidades 
 
 ## Instalação
 1. Restaure as dependências: `dotnet restore`
-2. Configure a Connection String no arquivo `appsettings.json` apontando para o caminho do arquivo Chinook.db, localizado na pasta `Infraestrutura/Data`.
+2. Configure a Connection String no arquivo `API-SIGNALR/Properties/launchSettings.json` apontando para o caminho do arquivo Chinook.db, localizado na pasta `Infraestrutura/Data`.
    Exemplo:
    ```json
-   "ConnectionStrings": {
-     "DefaultConnection": "Data Source=./Infraestrutura/Data/Chinook.db"
-   }
+   "ConnectionString": "Data Source=./Infraestrutura/Data/Chinook.db"
 
 ## Exemplos de uso
 #### FRONT-END (React)

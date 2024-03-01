@@ -361,6 +361,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/API-SIGNALR/appsettings.json
-/API-SIGNALR/appsettings.json
 /API-SIGNALR/Properties/launchSettings.json

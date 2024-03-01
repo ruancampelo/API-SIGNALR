@@ -17,7 +17,7 @@
       "applicationUrl": "http://localhost:5166",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ConnectionString": ""
+        "ConnectionString": "C:\\Users\\Ruan\\Desktop\\EU\\Signalr\\API-SIGNALR\\Infraestrutura\\Data\\Chinook.db"
       }
     },
     "https": {

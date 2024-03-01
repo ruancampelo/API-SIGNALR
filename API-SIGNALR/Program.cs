@@ -13,13 +13,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSignalR();
-IConfiguration configuration = new ConfigurationBuilder()
-            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-            .AddEnvironmentVariables() 
-            .Build();
 builder.Services.AddDbContext<Contexto>(options =>
-                                        options.UseSqlite(configuration["ConnectionString:DefaultConnection"]));
+                                        options.UseSqlite(Environment.GetEnvironmentVariable("ConectionString")));
 
 
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssembly(typeof(AlterarAlbumResponse).Assembly));

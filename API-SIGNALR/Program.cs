@@ -1,4 +1,3 @@
-using API_SIGNALR.Middleware;
 using Aplicacao.Mediator.Album.Alterar;
 using Infraestrutura;
 using Infraestrutura.Data;
@@ -14,7 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSignalR();
 builder.Services.AddDbContext<Contexto>(options =>
-                                        options.UseSqlite(Environment.GetEnvironmentVariable("ConectionString")));
+                                        options.UseSqlite(Environment.GetEnvironmentVariable("ConnectionString")));
 
 
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssembly(typeof(AlterarAlbumResponse).Assembly));
@@ -38,6 +37,4 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapHub<HubNotificacao>("/notificacao");
 app.MapControllers();
-app.UseMiddleware<NotificacaoMiddleware>();
-
 app.Run();

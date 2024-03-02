@@ -2,6 +2,7 @@
 using Aplicacao.Mediator.Album.Criar;
 using Aplicacao.Mediator.Album.Excluir;
 using Aplicacao.Mediator.Album.Obter;
+using Dominio.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,14 +13,16 @@ namespace API_SIGNALR.Controllers
     public class AlbumController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly INotificacao _notificacao;
 
-        public AlbumController(IMediator mediator)
+        public AlbumController(IMediator mediator, INotificacao notificacao)
         {
             _mediator = mediator;
+            _notificacao = notificacao;
         }
 
         [HttpGet]
-        [Route("Album")]
+        [Route("Albums")]
         public async Task<IActionResult> Obter()
         {
             var resultado = await _mediator.Send(new ObterAlbumRequest());
@@ -36,6 +39,7 @@ namespace API_SIGNALR.Controllers
         {
             var resultado = await _mediator.Send(request);
             return Created("Alterado com Sucesso", resultado);
+
         }
 
         [HttpPost]
@@ -43,6 +47,7 @@ namespace API_SIGNALR.Controllers
         public async Task<IActionResult> CriarAsync([FromBody] CriarAlbumRequest request)
         {
             var resultado = await _mediator.Send(request);
+            await _notificacao.EnviarNotificacaoGrupo("Albuns", "Álbum criado às: " + DateTime.UtcNow);
             return Created("Criado com Sucesso", resultado);
         }
 
@@ -55,6 +60,7 @@ namespace API_SIGNALR.Controllers
             if(resultado is null)
                 return NotFound();
 
+            await _notificacao.EnviarNotificacaoGrupo("Albuns", "Álbum excluído às: " + DateTime.UtcNow);
             return NoContent();
         }
 

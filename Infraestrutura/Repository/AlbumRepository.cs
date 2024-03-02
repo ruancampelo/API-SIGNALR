@@ -1,6 +1,7 @@
 ﻿using Dominio.Interfaces;
 using Dominio.Model;
 using Infraestrutura.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infraestrutura.Repository
 {
@@ -12,9 +13,9 @@ namespace Infraestrutura.Repository
             _contexto = contexto;
         }
 
-        public async Task<Album> GetAlbum()
+        public async Task<IEnumerable<Album>> GetAlbum()
         {
-            var result = _contexto.Set<Album>().FirstOrDefault();
+            var result = _contexto.Set<Album>().Include(x => x.Artist).AsEnumerable();
 
             return result;
         }
